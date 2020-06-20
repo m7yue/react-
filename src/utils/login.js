@@ -1,7 +1,7 @@
 const isEmpty=require('lodash/isEmpty')
 const validator=require('validator')
 
-
+// 校验用户名和密码
 const validatorInput=(data)=>{
   let errors={}
   if(validator.isEmpty(data.username)){
