@@ -1,4 +1,4 @@
-import { ADD_FLASH_MESSAGE,DEL_FLASH_MESSAGE } from '../actions/actionTypes'
+import { ADD_FLASH_MESSAGE,DEL_FLASH_MESSAGE,CLEAR_FLASH_MESSAGE } from '../actions/actionTypes'
 import shortid from 'shortid'
 
 const addFlashMessage = (state=[],action={}) => {
@@ -16,6 +16,8 @@ const addFlashMessage = (state=[],action={}) => {
       return state.filter(item=>{
         return item.id !== action.id
       })
+    case CLEAR_FLASH_MESSAGE:
+      return []
     default:
       return state
   }

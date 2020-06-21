@@ -14,3 +14,12 @@ export const loginRequest=(userData)=>{
     })
   }
 }
+
+export const logOut=(userData)=>{
+  return dispatch=>{
+    localStorage.removeItem('jwtToken')
+    setAuthorzationToken(false)
+    // 取消请求头
+    dispatch(storageUserAction({user:''}))
+  }
+}
