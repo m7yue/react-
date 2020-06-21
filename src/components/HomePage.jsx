@@ -1,8 +1,16 @@
 import React, { Fragment } from 'react';
-import FlashMessagesList from './flash/FlashMessagesList'
 import {connect} from 'react-redux'
-class App extends React.Component {
+
+import FlashMessagesList from './flash/FlashMessagesList'
+
+class HomePage extends React.Component {
   componentDidMount(){
+    const {history,user} = this.props
+    if(!user){
+      history.push('./login')
+    }
+  }
+  componentDidUpdate(){
     const {history,user} = this.props
     if(!user){
       history.push('./login')
@@ -19,10 +27,11 @@ class App extends React.Component {
     );
   }
 }
+
 const mapStateTodipatch=(state)=>{
   return {
     user:state.userStore
   }
 }
 
-export default connect(mapStateTodipatch)(App);
+export default connect(mapStateTodipatch)(HomePage);

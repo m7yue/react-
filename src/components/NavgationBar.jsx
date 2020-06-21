@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+
 import {logOut} from '../actions/loginActions'
 import {clearFlashMessage} from '../actions/flashMessages'
 

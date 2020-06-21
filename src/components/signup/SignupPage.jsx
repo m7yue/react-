@@ -1,9 +1,10 @@
 import React from 'react';
-import SignupForm from './SignupForm'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {userSignupRequest} from '../../actions/signupActions'
-import {addFlashMessage} from '../../actions/flashMessages'
+
+import actions from '../../actions'
+
+import SignupForm from './SignupForm'
 
 class SignupPage extends React.Component {
   render(){
@@ -19,6 +20,7 @@ class SignupPage extends React.Component {
   }
 }
 
+const {userSignupRequest,addFlashMessage}=actions
 const mapDispatchToProps=(dispatch)=>{
   return {
     userSignupRequest:bindActionCreators(userSignupRequest,dispatch),

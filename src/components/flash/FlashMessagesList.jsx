@@ -1,7 +1,8 @@
 import React from 'react';
-import FlashMessage from './FlashMessage';
 import {connect} from 'react-redux'
-import {delFlashMessage} from '../../actions/flashMessages'
+
+import actions from '../../actions'
+import FlashMessage from './FlashMessage';
 
 class FlashMessagesList extends React.Component {
   render(){
@@ -20,6 +21,8 @@ const mapStateToProps=(state)=>{
     flashMessages:state.flashMessages
   }
 }
+
+const delFlashMessage = actions.delFlashMessage
 
 // mapDispatchToProps 这样写 前提是 delFlashMessage 必须为 actionCreator
 export default connect(mapStateToProps,{delFlashMessage})(FlashMessagesList)
