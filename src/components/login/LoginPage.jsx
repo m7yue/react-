@@ -2,9 +2,8 @@ import React from 'react';
 import LoginForm from './LoginForm'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as loginActions from '../../actions/loginActions'
-import * as flashActions from '../../actions/flashMessages'
-import * as storageUserActions from '../../actions/storageUserActions'
+import {loginRequest} from '../../actions/loginActions'
+import {addFlashMessage} from '../../actions/flashMessages'
 
 
 class LoginPage extends React.Component {
@@ -13,7 +12,7 @@ class LoginPage extends React.Component {
       <div className="row">
         <div className="col-md-3"></div>
         <div className="col-md-6">
-          <LoginForm loginActions={this.props.loginActions} storageUserActions={this.props.storageUserActions} flashActions={this.props.flashActions}/>
+          <LoginForm loginRequest={this.props.loginRequest} addFlashMessage={this.props.addFlashMessage}/>
         </div>
         <div className="col-md-3"></div>
       </div>
@@ -22,9 +21,8 @@ class LoginPage extends React.Component {
 }
 const mapDispatchToProps=(dispatch)=>{
   return {
-    loginActions:bindActionCreators(loginActions,dispatch),
-    flashActions:bindActionCreators(flashActions,dispatch),
-    storageUserActions:bindActionCreators(storageUserActions,dispatch)
+    loginRequest:bindActionCreators(loginRequest,dispatch),
+    addFlashMessage:bindActionCreators(addFlashMessage,dispatch)
   }
 }
 export default connect(null,mapDispatchToProps)(LoginPage)

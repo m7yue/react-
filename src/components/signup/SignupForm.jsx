@@ -24,20 +24,16 @@ class SignupForm extends React.Component {
   onSubmit = (e) =>{
     e.preventDefault()
     this.setState({isLoadding:true})
-    console.log(this.props)
-    this.props.signupActions.userSignupRequest(this.state).then(({response})=>{
+    this.props.userSignupRequest(this.state).then(({response})=>{
       // 路由跳转
-      console.log(this.props)
-      this.props.flashActions.addFlashMessage({
+      this.props.addFlashMessage({
         type:'success',
         text:'注册成功，欢迎你的加入'
       })
       this.props.history.push('/')
     },({response})=>{
-      console.log(response)
       this.setState({errors:response.data,isLoadding:false})
     })
-    console.log(this.state)
   }
 
   render(){

@@ -28,15 +28,11 @@ class LoginForm extends React.Component {
     if(!isValid){
       return this.setState({errors,isLoadding:false})
     }
-    this.props.loginActions.loginRequest(this.state).then((res)=>{
+    this.props.loginRequest(this.state).then((res)=>{
       // 路由跳转
-      this.props.flashActions.addFlashMessage({
+      this.props.addFlashMessage({
         type:'success',
         text:`用户${res.data.data.user}登录成功，欢迎你的加入`,
-      })
-      this.props.storageUserActions.storageUserAction({
-        type: 'userStorage',
-        username
       })
       this.props.history.push('/')
     },({response})=>{

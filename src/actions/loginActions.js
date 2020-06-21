@@ -1,7 +1,16 @@
 import axios from 'axios'
+import setAuthorzationToken from '../utils/setAuthorzationToken'
+import {storageUserAction} from './storageUserActions'
+import jwtDecode from 'jwt-decode'
 
 export const loginRequest=(userData)=>{
   return dispatch=>{
-    return axios.post('/api/login',userData)
+    return axios.post('/api/login',userData).then(res=>{
+      const token=res.data.data.token
+      localStorage.setItem('jwtToken',token)
+      setAuthorzationToken(token)
+      dispatch(storageUserAction(jwtDecode(token)))
+      return res 
+    })
   }
 }

@@ -1,6 +1,8 @@
 const express=require('express')
 const isEmpty=require('lodash/isEmpty')
 const validator=require('validator')
+const jwt=require('jsonwebtoken')
+const config=require('../config')
 
 const router=express.Router()
 
@@ -24,7 +26,9 @@ router.post('/',(req,res)=>{
   if(!isValid){
     res.status(400).json(errors) // 400 (Bad Request)
   }else{
-    res.send({success:true,data:{user}})
+    // res.send({success:true,data:{user}})
+    const token=jwt.sign({user},config.jwtSecret)
+    res.send({success:true,data:{token,user}})
   }
 })
 

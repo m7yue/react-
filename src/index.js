@@ -14,8 +14,23 @@ import rootReducer from './reducers'
 
 import NavgationBar from './components/NavgationBar'
 
-const store=createStore(rootReducer,composeWithDevTools(applyMiddleware(logger,thunk)))
+import {storageUserAction} from './actions/storageUserActions'
+import setAuthorzationToken from './utils/setAuthorzationToken'
+import jwtDecode from 'jwt-decode'
+import {addFlashMessage} from './actions/flashMessages'
 
+
+const store=createStore(rootReducer,composeWithDevTools(applyMiddleware(logger,thunk)))
+if(localStorage.jwtToken){
+  let jwtToken=jwtDecode(localStorage.jwtToken)
+  setAuthorzationToken(localStorage.jwtToken)
+  store.dispatch(storageUserAction(jwtDecode(localStorage.jwtToken)))
+
+  store.dispatch(addFlashMessage({
+    type:'success',
+    text:`用户${jwtToken.user}登录成功，欢迎你的加入`,
+  }))
+}
 
 ReactDOM.render(
   <Provider store={ store }>
