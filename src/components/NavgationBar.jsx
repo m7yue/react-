@@ -13,6 +13,9 @@ class NavgationBar extends React.Component {
     const logOut=(
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
+          <Link className="nav-link" to='/shop'>SHOP</Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to='/' onClick={this.handlerLogOut}>退出</Link>
         </li>
       </ul>

@@ -28,7 +28,6 @@ const validatorInput=(data)=>{
 }
 
 router.post('/',(req,res)=>{
-  console.log(req.body)
   const {errors,isValid}=validatorInput(req.body)
   if(!isValid){
     res.status(400).json(errors) // 400 (Bad Request)
